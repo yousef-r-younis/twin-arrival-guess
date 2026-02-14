@@ -313,11 +313,6 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
-        body[dir="rtl"] @keyframes slideIn {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
         .guess-card:hover {
             transform: translateX(10px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
@@ -459,44 +454,6 @@
             color: #C33;
         }
 
-        .setup-instructions {
-            background: #FFF9E6;
-            border: 3px solid var(--peach);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .setup-instructions h3 {
-            color: var(--text-dark);
-            margin-bottom: 15px;
-            font-family: 'Baloo 2', cursive;
-        }
-
-        body[dir="rtl"] .setup-instructions h3 {
-            font-family: 'Cairo', sans-serif;
-        }
-
-        .setup-instructions ol {
-            margin-left: 20px;
-            line-height: 1.8;
-        }
-
-        body[dir="rtl"] .setup-instructions ol {
-            margin-left: 0;
-            margin-right: 20px;
-        }
-
-        .setup-instructions code {
-            background: white;
-            padding: 2px 8px;
-            border-radius: 5px;
-            font-family: monospace;
-            color: var(--pink);
-            font-weight: 600;
-        }
-
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -536,103 +493,57 @@
             <p class="subtitle" data-en="(But babies have their own schedule! 😊)" data-ar="(لكن الأطفال لديهم جدولهم الخاص! 😊)">(But babies have their own schedule! 😊)</p>
         </header>
 
-        <div class="setup-instructions" id="setupInstructions">
-            <h3 data-en="📋 Setup Instructions" data-ar="📋 تعليمات الإعداد">📋 Setup Instructions</h3>
-            <ol data-en="">
-                <li>Create a new Google Sheet</li>
-                <li>Set up two sheets: "Guesses" and "Config"</li>
-                <li>In the "Guesses" sheet, add headers: <code>Timestamp | Name | Date | Message</code></li>
-                <li>In the "Config" sheet, add: <code>WinnerName</code> in A1 and <code>ActualDate</code> in B1</li>
-                <li>Go to Extensions → Apps Script</li>
-                <li>Replace the code with the script provided separately, then click Deploy → New Deployment → Web App</li>
-                <li>Set "Execute as: Me" and "Who has access: Anyone"</li>
-                <li>Copy the deployment URL and paste it in the input below</li>
-            </ol>
-            <ol data-ar="" style="display: none;">
-                <li>أنشئ جدول Google Sheets جديد</li>
-                <li>أنشئ صفحتين: "Guesses" و "Config"</li>
-                <li>في صفحة "Guesses"، أضف العناوين: <code>Timestamp | Name | Date | Message</code></li>
-                <li>في صفحة "Config"، أضف: <code>WinnerName</code> في A1 و <code>ActualDate</code> في B1</li>
-                <li>اذهب إلى Extensions → Apps Script</li>
-                <li>استبدل الكود بالكود المقدم بشكل منفصل، ثم اضغط Deploy → New Deployment → Web App</li>
-                <li>اضبط "Execute as: Me" و "Who has access: Anyone"</li>
-                <li>انسخ رابط النشر والصقه في المربع أدناه</li>
-            </ol>
-            <div style="margin-top: 15px;">
-                <label data-en="Google Apps Script Deployment URL:" data-ar="رابط نشر Google Apps Script:">Google Apps Script Deployment URL:</label>
-                <input type="text" id="scriptUrl" placeholder="https://script.google.com/macros/s/..." style="margin-top: 8px;">
-                <button class="submit-btn" onclick="saveScriptUrl()" style="margin-top: 10px;" data-en="Save & Continue" data-ar="حفظ ومتابعة">Save & Continue</button>
-            </div>
+        <div class="form-card">
+            <form id="guessForm">
+                <div class="form-group">
+                    <label for="name" data-en="Your Name" data-ar="اسمك">Your Name</label>
+                    <input type="text" id="name" required data-placeholder-en="Enter your name" data-placeholder-ar="أدخل اسمك" placeholder="Enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="date" data-en="Your Guess (Birth Date)" data-ar="تخمينك (تاريخ الولادة)">Your Guess (Birth Date)</label>
+                    <input type="date" id="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" data-en="Sweet Message to the Mother" data-ar="رسالة جميلة للأم">Sweet Message to the Mother</label>
+                    <textarea id="message" required data-placeholder-en="Share your love and best wishes..." data-placeholder-ar="شاركي حبك وأطيب تمنياتك..." placeholder="Share your love and best wishes..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" data-en="Submit Your Guess! 💕" data-ar="أرسل تخمينك! 💕">Submit Your Guess! 💕</button>
+            </form>
         </div>
 
-        <div id="mainContent" style="display: none;">
-            <div class="form-card">
-                <form id="guessForm">
-                    <div class="form-group">
-                        <label for="name" data-en="Your Name" data-ar="اسمك">Your Name</label>
-                        <input type="text" id="name" required data-placeholder-en="Enter your name" data-placeholder-ar="أدخل اسمك" placeholder="Enter your name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="date" data-en="Your Guess (Birth Date)" data-ar="تخمينك (تاريخ الولادة)">Your Guess (Birth Date)</label>
-                        <input type="date" id="date" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message" data-en="Sweet Message to the Mother" data-ar="رسالة جميلة للأم">Sweet Message to the Mother</label>
-                        <textarea id="message" required data-placeholder-en="Share your love and best wishes..." data-placeholder-ar="شاركي حبك وأطيب تمنياتك..." placeholder="Share your love and best wishes..."></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn" data-en="Submit Your Guess! 💕" data-ar="أرسل تخمينك! 💕">Submit Your Guess! 💕</button>
-                </form>
+        <div class="guesses-section">
+            <div class="guesses-header">
+                <h2 class="guesses-title" data-en="Family Guesses" data-ar="تخمينات العائلة">Family Guesses</h2>
+                <span class="guess-count" id="guessCount">0 <span data-en="guesses" data-ar="تخمينات">guesses</span></span>
             </div>
+            <div id="guessesList" class="loading" data-en="Loading guesses..." data-ar="جاري تحميل التخمينات...">Loading guesses...</div>
+        </div>
 
-            <div class="guesses-section">
-                <div class="guesses-header">
-                    <h2 class="guesses-title" data-en="Family Guesses" data-ar="تخمينات العائلة">Family Guesses</h2>
-                    <span class="guess-count" id="guessCount">0 <span data-en="guesses" data-ar="تخمينات">guesses</span></span>
+        <div class="admin-section">
+            <h3 class="admin-title" data-en="🔐 Admin: Reveal Winner" data-ar="🔐 المشرف: الإعلان عن الفائز">🔐 Admin: Reveal Winner</h3>
+            <div class="admin-controls">
+                <div class="admin-input">
+                    <label for="actualDate" data-en="Actual Birth Date" data-ar="تاريخ الولادة الفعلي">Actual Birth Date</label>
+                    <input type="date" id="actualDate">
                 </div>
-                <div id="guessesList" class="loading" data-en="Loading guesses..." data-ar="جاري تحميل التخمينات...">Loading guesses...</div>
-            </div>
-
-            <div class="admin-section">
-                <h3 class="admin-title" data-en="🔐 Admin: Reveal Winner" data-ar="🔐 المشرف: الإعلان عن الفائز">🔐 Admin: Reveal Winner</h3>
-                <div class="admin-controls">
-                    <div class="admin-input">
-                        <label for="actualDate" data-en="Actual Birth Date" data-ar="تاريخ الولادة الفعلي">Actual Birth Date</label>
-                        <input type="date" id="actualDate">
-                    </div>
-                    <button class="reveal-btn" onclick="revealWinner()" data-en="🏆 Reveal Winner!" data-ar="🏆 الإعلان عن الفائز!">🏆 Reveal Winner!</button>
-                </div>
+                <button class="reveal-btn" onclick="revealWinner()" data-en="🏆 Reveal Winner!" data-ar="🏆 الإعلان عن الفائز!">🏆 Reveal Winner!</button>
             </div>
         </div>
     </div>
 
     <script>
-        let SCRIPT_URL = localStorage.getItem('scriptUrl') || '';
+        // Hardcoded Google Apps Script URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPT-umw4mH8K6YnZ2-PnwddhRz8iSXyQ0CQue6udaAKEnlNLuYF6a08OnJjpwSNjmi/exec';
+        
         let currentLang = localStorage.getItem('language') || 'en';
 
         document.addEventListener('DOMContentLoaded', () => {
-            if (SCRIPT_URL) {
-                document.getElementById('setupInstructions').style.display = 'none';
-                document.getElementById('mainContent').style.display = 'block';
-                loadGuesses();
-            }
             setLanguage(currentLang);
-        });
-
-        function saveScriptUrl() {
-            const url = document.getElementById('scriptUrl').value.trim();
-            if (!url) {
-                alert(currentLang === 'en' ? 'Please enter the script URL!' : 'الرجاء إدخال رابط السكريبت!');
-                return;
-            }
-            localStorage.setItem('scriptUrl', url);
-            SCRIPT_URL = url;
-            document.getElementById('setupInstructions').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
             loadGuesses();
-        }
+        });
 
         function setLanguage(lang) {
             currentLang = lang;
@@ -650,15 +561,13 @@
             document.querySelectorAll('[data-en]').forEach(el => {
                 if (el.hasAttribute('data-placeholder-en')) {
                     el.placeholder = el.getAttribute(`data-placeholder-${lang}`);
-                } else if (el.tagName === 'OL') {
-                    el.style.display = el.getAttribute(`data-${lang}`) !== null ? 'block' : 'none';
                 } else {
                     el.textContent = el.getAttribute(`data-${lang}`);
                 }
             });
         }
 
-        document.getElementById('guessForm')?.addEventListener('submit', async (e) => {
+        document.getElementById('guessForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const submitBtn = e.target.querySelector('.submit-btn');
@@ -693,18 +602,21 @@
         });
 
         async function loadGuesses() {
-            if (!SCRIPT_URL) return;
-
             try {
                 const response = await fetch(`${SCRIPT_URL}?action=getGuesses&t=${Date.now()}`);
                 const data = await response.json();
-                displayGuesses(data.guesses || [], data.winner || null);
+                
+                if (data.success) {
+                    displayGuesses(data.guesses || [], data.winner || null);
+                } else {
+                    throw new Error(data.error || 'Failed to load');
+                }
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error loading:', error);
                 document.getElementById('guessesList').innerHTML = 
                     currentLang === 'en' 
                         ? '<div class="error">Error loading guesses. Please refresh the page.</div>'
-                        : '<div class="error">خطأ في تحميل التخمينات. يرجى تحديث الصفحة.</div>';
+                        : '<div class="error">خطأ في التحميل. يرجى تحديث الصفحة.</div>';
             }
         }
 
