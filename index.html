@@ -372,64 +372,9 @@
             font-style: italic;
         }
 
-        .admin-section {
-            background: linear-gradient(135deg, #FFE5F0, #E5F0FF);
-            border-radius: 25px;
-            padding: 30px;
-            margin-top: 40px;
-            border: 2px dashed var(--lavender);
-            animation: fadeIn 1s ease-out 0.6s both;
-        }
+        
 
-        .admin-title {
-            font-family: 'Baloo 2', cursive;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-        }
-
-        body[dir="rtl"] .admin-title {
-            font-family: 'Cairo', sans-serif;
-        }
-
-        .admin-controls {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .admin-input {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .reveal-btn {
-            background: linear-gradient(135deg, gold, #FFD700);
-            color: #4A5568;
-            border: none;
-            padding: 15px 35px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Baloo 2', cursive;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
-        }
-
-        body[dir="rtl"] .reveal-btn {
-            font-family: 'Cairo', sans-serif;
-        }
-
-        .reveal-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
-        }
-
-        .reveal-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
+        
 
         .no-guesses {
             text-align: center;
@@ -523,16 +468,7 @@
             <div id="guessesList" class="loading" data-en="Loading guesses..." data-ar="جاري تحميل التخمينات...">Loading guesses...</div>
         </div>
 
-        <div class="admin-section">
-            <h3 class="admin-title" data-en="🔐 Admin: Reveal Winner" data-ar="🔐 المشرف: الإعلان عن الفائز">🔐 Admin: Reveal Winner</h3>
-            <div class="admin-controls">
-                <div class="admin-input">
-                    <label for="actualDate" data-en="Actual Birth Date" data-ar="تاريخ الولادة الفعلي">Actual Birth Date</label>
-                    <input type="date" id="actualDate">
-                </div>
-                <button class="reveal-btn" onclick="revealWinner()" data-en="🏆 Reveal Winner!" data-ar="🏆 الإعلان عن الفائز!">🏆 Reveal Winner!</button>
-            </div>
-        </div>
+        
     </div>
 
     <script>
@@ -657,72 +593,12 @@
             }).join('');
         }
 
-        async function revealWinner() {
-            const actualDateInput = document.getElementById('actualDate');
-            const actualDate = actualDateInput.value;
-
-            if (!actualDate) {
-                alert(currentLang === 'en' 
-                    ? 'Please enter the actual birth date first!'
-                    : 'الرجاء إدخال تاريخ الولادة الفعلي أولاً!');
-                return;
-            }
-
-            const revealBtn = event.target;
-            revealBtn.disabled = true;
-            revealBtn.textContent = currentLang === 'en' ? 'Calculating...' : 'جاري الحساب...';
-
-            try {
-                const response = await fetch(`${SCRIPT_URL}?action=getGuesses&t=${Date.now()}`);
-                const data = await response.json();
-                const guesses = data.guesses || [];
-
-                if (guesses.length === 0) {
-                    alert(currentLang === 'en' ? 'No guesses to evaluate!' : 'لا توجد تخمينات للتقييم!');
-                    return;
-                }
-
-                const actual = new Date(actualDate);
-                let closestGuess = null;
-                let smallestDiff = Infinity;
-
-                guesses.forEach(guess => {
-                    const guessDate = new Date(guess.date);
-                    const diff = Math.abs(actual - guessDate);
-                    if (diff < smallestDiff) {
-                        smallestDiff = diff;
-                        closestGuess = guess;
-                    }
-                });
-
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        action: 'setWinner',
-                        winner: closestGuess.name,
-                        actualDate: actualDate
-                    })
-                });
-
-                const daysDiff = Math.round(smallestDiff / (1000 * 60 * 60 * 24));
-                const message = currentLang === 'en'
-                    ? `🎊 Winner: ${closestGuess.name}!\nThey were ${daysDiff} day${daysDiff !== 1 ? 's' : ''} off!`
-                    : `🎊 الفائز: ${closestGuess.name}!\nكان الفرق ${daysDiff} يوم!`;
-                
-                alert(message);
-                setTimeout(loadGuesses, 2000);
-            } catch (error) {
-                console.error('Error:', error);
-                alert(currentLang === 'en' 
-                    ? 'There was an error revealing the winner.'
-                    : 'حدث خطأ في الإعلان عن الفائز.');
-            } finally {
-                revealBtn.disabled = false;
-                revealBtn.textContent = currentLang === 'en' ? '🏆 Reveal Winner!' : '🏆 الإعلان عن الفائز!';
-            }
-        }
+        
     </script>
+    <footer style="text-align:center; padding:18px 12px; color:var(--text-light); font-size:0.95rem;">
+        Made by Yousef Younis<br>
+        +961 70865988<br>
+        <a href="mailto:yousef.r.younis@gmail.com">yousef.r.younis@gmail.com</a>
+    </footer>
 </body>
 </html>
