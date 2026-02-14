@@ -399,6 +399,30 @@
             color: #C33;
         }
 
+        .parents-figure {
+            text-align: center;
+            margin: 18px 0 28px;
+        }
+
+        .parents-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 18px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+            border: 4px solid rgba(255,255,255,0.6);
+        }
+
+        .parents-caption {
+            margin-top: 10px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+
+        body[dir="rtl"] .parents-caption {
+            font-family: 'Cairo', sans-serif;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -437,6 +461,10 @@
             <p class="due-date" data-en="Official due date: March 16, 2026" data-ar="تاريخ الولادة المتوقع: ١٦ مارس ٢٠٢٦">Official due date: March 16, 2026</p>
             <p class="subtitle" data-en="(But babies have their own schedule! 😊)" data-ar="(لكن الأطفال لديهم جدولهم الخاص! 😊)">(But babies have their own schedule! 😊)</p>
             <p class="subtitle" data-en="She is 32 weeks and 4 days pregnant as of February 14, 2026." data-ar="هي الآن في الأسبوع ٣٢ و٤ أيام من الحمل اعتبارًا من ١٤ فبراير ٢٠٢٦.">She is 32 weeks and 4 days pregnant as of February 14, 2026.</p>
+            <figure class="parents-figure">
+                <img src="image.jpeg" alt="Parents photo" class="parents-image">
+                <figcaption class="parents-caption"><span data-en="The amazing parents" data-ar="الآباء الرائعون">The amazing parents</span></figcaption>
+            </figure>
         </header>
 
         <div class="form-card">
