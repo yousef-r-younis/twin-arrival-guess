@@ -450,50 +450,51 @@
 </head>
 <body dir="ltr">
     <div class="language-toggle">
-        <button class="lang-btn active" onclick="setLanguage('en')">English</button>
-        <button class="lang-btn" onclick="setLanguage('ar')">العربية</button>
+        <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">English</button>
+        <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">العربية</button>
+        <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">Español</button>
     </div>
 
     <div class="container">
         <header>
-            <h1 data-en="🍼 Twin Arrival Guessing Game 🍼" data-ar="🍼 لعبة تخمين موعد ولادة التوأم 🍼">🍼 Twin Arrival Guessing Game 🍼</h1>
-            <p class="subtitle" data-en="When will these precious babies arrive?" data-ar="متى سيصل هذان الطفلان الغاليان؟">When will these precious babies arrive?</p>
-            <p class="due-date" data-en="Official due date: March 16, 2026" data-ar="تاريخ الولادة المتوقع: ١٦ مارس ٢٠٢٦">Official due date: March 16, 2026</p>
-            <p class="subtitle" data-en="(But babies have their own schedule! 😊)" data-ar="(لكن الأطفال لديهم جدولهم الخاص! 😊)">(But babies have their own schedule! 😊)</p>
-            <p class="subtitle" data-en="She is 32 weeks and 5 days pregnant as of February 15, 2026." data-ar="هي الآن في الأسبوع ٣٢ و5 أيام من الحمل اعتبارًا من 15 فبراير ٢٠٢٦.">She is 32 weeks and 5 days pregnant as of February 15, 2026.</p>
+            <h1 data-en="🍼 Twin Arrival Guessing Game 🍼" data-ar="🍼 لعبة تخمين موعد ولادة التوأم 🍼" data-es="🍼 Juego de Adivinar la Llegada de los Gemelos 🍼">🍼 Twin Arrival Guessing Game 🍼</h1>
+            <p class="subtitle" data-en="When will these precious babies arrive?" data-ar="متى سيصل هذان الطفلان الغاليان؟" data-es="¿Cuándo llegarán estos preciosos bebés?">When will these precious babies arrive?</p>
+            <p class="due-date" data-en="Official due date: March 16, 2026" data-ar="تاريخ الولادة المتوقع: ١٦ مارس ٢٠٢٦" data-es="Fecha oficial de parto: 16 de marzo de 2026">Official due date: March 16, 2026</p>
+            <p class="subtitle" data-en="(But babies have their own schedule! 😊)" data-ar="(لكن الأطفال لديهم جدولهم الخاص! 😊)" data-es="(¡Pero los bebés tienen su propio horario! 😊)">(But babies have their own schedule! 😊)</p>
+            <p class="subtitle" data-en="She is 32 weeks and 6 days pregnant as of February 16, 2026." data-ar="هي الآن في الأسبوع ٣٢ و6 أيام من الحمل اعتبارًا من 16 فبراير ٢٠٢٦." data-es="Tiene 32 semanas y 6 días de embarazo a partir del 16 de febrero de 2026.">She is 32 weeks and 6 days pregnant as of February 16, 2026.</p>
             <figure class="parents-figure">
                 <img src="image.jpeg" alt="Parents photo" class="parents-image">
-                <figcaption class="parents-caption"><span data-en="The amazing parents" data-ar="الآباء الرائعون">The amazing parents</span></figcaption>
+                <figcaption class="parents-caption"><span data-en="The amazing parents" data-ar="الآباء الرائعون" data-es="Los increíbles padres">The amazing parents</span></figcaption>
             </figure>
         </header>
 
         <div class="form-card">
             <form id="guessForm">
                 <div class="form-group">
-                    <label for="name" data-en="Your Name" data-ar="اسمك">Your Name</label>
-                    <input type="text" id="name" required data-placeholder-en="Enter your name" data-placeholder-ar="أدخل اسمك" placeholder="Enter your name">
+                    <label for="name" data-en="Your Name" data-ar="اسمك" data-es="Tu nombre">Your Name</label>
+                    <input type="text" id="name" required data-placeholder-en="Enter your name" data-placeholder-ar="أدخل اسمك" data-placeholder-es="Ingresa tu nombre" placeholder="Enter your name">
                 </div>
 
                 <div class="form-group">
-                    <label for="date" data-en="Your Guess (Birth Date)" data-ar="تخمينك (تاريخ الولادة)">Your Guess (Birth Date)</label>
+                    <label for="date" data-en="Your Guess (Birth Date)" data-ar="تخمينك (تاريخ الولادة)" data-es="Tu predicción (fecha de nacimiento)">Your Guess (Birth Date)</label>
                     <input type="date" id="date" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="message" data-en="Sweet Message to the Mother" data-ar="رسالة جميلة للأم">Sweet Message to the Mother</label>
-                    <textarea id="message" required data-placeholder-en="Share your love and best wishes..." data-placeholder-ar="شاركي حبك وأطيب تمنياتك..." placeholder="Share your love and best wishes..."></textarea>
+                    <label for="message" data-en="Sweet Message to the Mother" data-ar="رسالة جميلة للأم" data-es="Mensaje dulce para la madre">Sweet Message to the Mother</label>
+                    <textarea id="message" required data-placeholder-en="Share your love and best wishes..." data-placeholder-ar="شاركي حبك وأطيب تمنياتك..." data-placeholder-es="Comparte tu amor y tus mejores deseos..." placeholder="Share your love and best wishes..."></textarea>
                 </div>
 
-                <button type="submit" class="submit-btn" data-en="Submit Your Guess! 💕" data-ar="أرسل تخمينك! 💕">Submit Your Guess! 💕</button>
+                <button type="submit" class="submit-btn" data-en="Submit Your Guess! 💕" data-ar="أرسل تخمينك! 💕" data-es="¡Envía tu predicción! 💕">Submit Your Guess! 💕</button>
             </form>
         </div>
 
         <div class="guesses-section">
             <div class="guesses-header">
-                <h2 class="guesses-title" data-en="Family & Friends Guesses" data-ar="تخمينات العائلة">Family & Friends Guesses</h2>
-                <span class="guess-count" id="guessCount">0 <span data-en="guesses" data-ar="تخمينات">guesses</span></span>
+                <h2 class="guesses-title" data-en="Family & Friends Guesses" data-ar="تخمينات العائلة" data-es="Predicciones de familia y amigos">Family & Friends Guesses</h2>
+                <span class="guess-count" id="guessCount">0 <span data-en="guesses" data-ar="تخمينات" data-es="predicciones">guesses</span></span>
             </div>
-            <div id="guessesList" class="loading" data-en="Loading guesses..." data-ar="جاري تحميل التخمينات...">Loading guesses...</div>
+            <div id="guessesList" class="loading" data-en="Loading guesses..." data-ar="جاري تحميل التخمينات..." data-es="Cargando predicciones...">Loading guesses...</div>
         </div>
 
         
@@ -513,21 +514,23 @@
         function setLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('language', lang);
-            
+
+            document.documentElement.lang = lang === 'ar' ? 'ar' : (lang === 'es' ? 'es' : 'en');
             document.body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-            
+
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if ((lang === 'en' && btn.textContent === 'English') || (lang === 'ar' && btn.textContent === 'العربية')) {
+                if (btn.dataset && btn.dataset.lang === lang) {
                     btn.classList.add('active');
                 }
             });
-            
+
             document.querySelectorAll('[data-en]').forEach(el => {
-                if (el.hasAttribute('data-placeholder-en')) {
+                if (el.hasAttribute(`data-placeholder-${lang}`)) {
                     el.placeholder = el.getAttribute(`data-placeholder-${lang}`);
                 } else {
-                    el.textContent = el.getAttribute(`data-${lang}`);
+                    const text = el.getAttribute(`data-${lang}`) || el.getAttribute('data-en');
+                    el.textContent = text;
                 }
             });
         }
@@ -537,7 +540,7 @@
 
             const submitBtn = e.target.querySelector('.submit-btn');
             submitBtn.disabled = true;
-            submitBtn.textContent = currentLang === 'en' ? 'Submitting...' : 'جاري الإرسال...';
+            submitBtn.textContent = currentLang === 'en' ? 'Submitting...' : (currentLang === 'ar' ? 'جاري الإرسال...' : 'Enviando...');
 
             const guess = {
                 timestamp: new Date().toISOString(),
@@ -555,14 +558,14 @@
                 });
 
                 e.target.reset();
-                alert(currentLang === 'en' ? 'Your guess has been submitted! 🎉' : 'تم إرسال تخمينك! 🎉');
+                alert(currentLang === 'en' ? 'Your guess has been submitted! 🎉' : (currentLang === 'ar' ? 'تم إرسال تخمينك! 🎉' : '¡Tu predicción ha sido enviada! 🎉'));
                 setTimeout(loadGuesses, 2000);
             } catch (error) {
                 console.error('Error:', error);
-                alert(currentLang === 'en' ? 'There was an error. Please try again.' : 'حدث خطأ. يرجى المحاولة مرة أخرى.');
+                alert(currentLang === 'en' ? 'There was an error. Please try again.' : (currentLang === 'ar' ? 'حدث خطأ. يرجى المحاولة مرة أخرى.' : 'Hubo un error. Por favor, intenta de nuevo.'));
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.textContent = currentLang === 'en' ? 'Submit Your Guess! 💕' : 'أرسل تخمينك! 💕';
+                submitBtn.textContent = currentLang === 'en' ? 'Submit Your Guess! 💕' : (currentLang === 'ar' ? 'أرسل تخمينك! 💕' : '¡Envía tu predicción! 💕');
             }
         });
 
@@ -581,7 +584,9 @@
                 document.getElementById('guessesList').innerHTML = 
                     currentLang === 'en' 
                         ? '<div class="error">Error loading guesses. Please refresh the page.</div>'
-                        : '<div class="error">خطأ في التحميل. يرجى تحديث الصفحة.</div>';
+                        : (currentLang === 'ar' 
+                            ? '<div class="error">خطأ في التحميل. يرجى تحديث الصفحة.</div>'
+                            : '<div class="error">Error al cargar las predicciones. Por favor, actualiza la página.</div>');
             }
         }
 
@@ -591,7 +596,9 @@
 
             const countText = currentLang === 'en' 
                 ? `${guesses.length} ${guesses.length === 1 ? 'guess' : 'guesses'}`
-                : `${guesses.length} تخمين${guesses.length === 1 ? '' : 'ات'}`;
+                : (currentLang === 'ar' 
+                    ? `${guesses.length} تخمين${guesses.length === 1 ? '' : 'ات'}`
+                    : `${guesses.length} ${guesses.length === 1 ? 'predicción' : 'predicciones'}`);
             
             guessCount.innerHTML = countText;
 
@@ -606,8 +613,9 @@
 
             guessesList.innerHTML = guesses.map((guess, index) => {
                 const isWinner = winner && guess.name === winner;
+                const locale = currentLang === 'ar' ? 'ar-EG' : (currentLang === 'es' ? 'es-ES' : 'en-US');
                 const formattedDate = new Date(guess.date).toLocaleDateString(
-                    currentLang === 'ar' ? 'ar-EG' : 'en-US',
+                    locale,
                     { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
                 );
 
